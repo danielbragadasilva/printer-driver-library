@@ -1,0 +1,178 @@
+; Sample combination printer INF for Win2000 or higher .
+; 
+
+[Version]
+Signature="$Windows NT$"
+Provider=%BY%
+LayoutFile=layout.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+
+[ClassInstall]
+AddReg=ClassAddReg
+DelReg=ClassDelReg
+
+[ClassDelReg]
+HKLM,"System\CurrentControlSet\Services\Class\Printer","NoUseClass"
+
+[ClassAddReg]
+HKR,,,,%CLASSNAME%
+HKR,,Installer,,MSPRINT.DLL
+HKR,,Icon,,-4
+HKR,,NoDisplayClass,,1
+
+;
+; Manufacturer Sections
+;
+
+[Manufacturer]
+"ELGIN"=ELGIN, NTamd64
+
+;
+; Model Sections 
+;
+
+[ELGIN.NTamd64]
+"NIX(U)" = NIXXP.NTamd64, USBPRINT\"NIX(U)C6BF", "NIX(U)C6BF"
+"VOX+(U)" = VOX1.NTamd64, USBPRINT\"ELGIN_VOX+(U)13828", "ELGIN_VOX+(U)13828"
+"VOX(U)" = VOXXP.NTamd64, USBPRINT\"VOX(U)__102F", "VOX(U)__102F"
+
+"NIX(P)" = NIXXP.NTamd64
+"NIX(S)" = NIXSXP.NTamd64
+
+"VOX+(P)" = VOX1.NTamd64
+"VOX+(S)" = VOX1S.NTamd64
+
+"VOX(P)" = VOXXP.NTamd64
+"VOX(S)" = VOXSXP.NTamd64
+;
+; Installer Sections
+;
+; 
+
+[NIXXP.NTamd64]
+CopyFiles = @NIXXP.DLL,@NIXXP.GPD
+CopyFiles = @NIXUI.INI
+CopyFiles = NIXUI
+DataFile  = NIXXP.GPD
+DataSection = UNIDRV_DATA
+Include     = NTPRINT.INF
+Needs       = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[NIXSXP.NTamd64]
+
+CopyFiles = @NIXSXP.DLL,@NIXSXP.GPD
+CopyFiles = @NIXUI.INI
+CopyFiles = NIXUI
+DataFile  = NIXSXP.GPD
+DataSection = UNIDRV_DATA
+Include     = NTPRINT.INF
+Needs       = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[VOX1.NTamd64]
+CopyFiles = @VOX1.DLL,@VOX1.GPD
+CopyFiles = @VOX1UI.INI
+CopyFiles = VOX1UI
+DataFile  = VOX1.GPD
+DataSection = UNIDRV_DATA
+Include     = NTPRINT.INF
+Needs       = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[VOX1S.NTamd64]
+CopyFiles = @VOX1S.DLL,@VOX1S.GPD
+CopyFiles = @VOX1SUI.INI
+CopyFiles = VOX1SUI
+DataFile  = VOX1S.GPD
+DataSection = UNIDRV_DATA
+Include     = NTPRINT.INF
+Needs       = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[VOXXP.NTamd64]
+CopyFiles = @VOXXP.DLL,@VOXXP.GPD
+CopyFiles = @VOXUI.INI
+CopyFiles = VOXUI
+DataFile  = VOXXP.GPD
+DataSection = UNIDRV_DATA
+Include     = NTPRINT.INF
+Needs       = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[VOXSXP.NTamd64]
+CopyFiles = @VOXSXP.DLL,@VOXSXP.GPD
+CopyFiles = @VOXUI.INI
+CopyFiles = VOXUI
+DataFile  = VOXSXP.GPD
+DataSection = UNIDRV_DATA
+Include     = NTPRINT.INF
+Needs       = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[NIXUI]
+NIXUNI.DLL
+NIXUI.DLL
+
+[VOX1UI]
+VOX1UNI.DLL
+VOX1UI.DLL
+
+[VOX1SUI]
+VOX1SUNI.DLL
+VOX1UI.DLL
+
+
+[VOXUI]
+VOXUNI.DLL
+VOXUI.DLL
+
+;
+
+[Processor]
+BYPROCES_XP.DLL
+
+[DestinationDirs]
+DefaultDestDir=66000
+Processor=66001
+
+
+;
+; diskid = description,tagfile,unused,subdir
+;
+[SourceDisksNames]
+1 = %Floppy%,,,
+
+;
+
+[SourceDisksFiles]
+NIXXP.DLL  = 1
+NIXXP.GPD  = 1
+NIXSXP.DLL = 1
+NIXSXP.GPD = 1
+NIXUNI.DLL = 1
+NIXUI.DLL  = 1
+NIXUI.INI  = 1
+NIXCONTROL.ini  = 1
+
+VOX1.DLL     = 1
+VOX1.GPD     = 1
+VOX1S.DLL    = 1
+VOX1S.GPD    = 1
+VOX1UNI.DLL  = 1
+VOX1UI.DLL   = 1
+VOX1UI.INI   = 1
+VOX1SUI.INI  = 1
+VOX1CONTROL.ini   = 1
+
+VOXXP.DLL   = 1
+VOXXP.GPD   = 1
+VOXSXP.DLL  = 1
+VOXSXP.GPD  = 1
+VOXUNI.DLL  = 1
+VOXUI.DLL   = 1
+VOXUI.INI   = 1
+VOXCONTROL.ini  = 1
+BYPROCES_XP.DLL = 1
+
+;
+; Localizable Strings
+;
+[Strings]
+Floppy="ELGIN Printer Disk"
+CLASSNAME="Printer"

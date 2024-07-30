@@ -1,0 +1,1 @@
+Instala o drive normal, e a velocidade da porta tem que ser 115200. 
