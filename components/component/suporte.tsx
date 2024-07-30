@@ -44,17 +44,17 @@ export function Suporte() {
       description: "Drive para instalação do Spooler das impressoras Elgin modelos i7 e i9.",
       thumbnail: "/elgin.png",
       category: "Driver",
-      url: "./src/DRIVE IMPRESSORA/ELGIN/i7-i9 Drivers .exe",
+      url: "/drive_impressora/ELGIN/i7 i9/ELGIN i7 i9.exe",
       popularity: 4.9,
     },
     {
       id: 5,
-      title: "Dribbble",
-      description: "Showcase and discover the latest design work from designers worldwide.",
-      thumbnail: "/placeholder.svg",
-      category: "Design",
-      url: "https://dribbble.com",
-      popularity: 4.6,
+      title: "Elgin i8",
+      description: "Driver exclusivo para instalação da impressora i8, POS58 e POS80.",
+      thumbnail: "/elgini8.png",
+      category: "Driver",
+      url: "/drive_impressora/ELGIN/i8/i8_Windows Driver_V7.17.exe",
+      popularity: 4.9,
     },
     {
       id: 6,
@@ -176,18 +176,19 @@ export function Suporte() {
               className="w-full h-40 object-cover rounded-t-lg"
             />
             <CardContent className="p-4">
-              <h3 className="text-lg text-blue-900 font-semibold mb-2">
+              <h3 className="text-lg font-semibold mb-2">
                 {link.title}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 {link.description}
               </p>
+
               <div className="flex items-center justify-between">
-                <Badge variant="primary" className="hover:bg-blue-500">
+                <Badge variant="primary" className="hover:bg-blue-500 hover:text-white">
                   {link.category}
                 </Badge>
                 <Button
-                  className="bg-blue-400 text-white"
+                  className="bg-blue-900 text-white"
                   size="sm"
                   variant="ghost"
                   onClick={() => handleDownload(link.url)}
@@ -196,6 +197,8 @@ export function Suporte() {
                   Download
                 </Button>
               </div>
+
+
             </CardContent>
           </Card>
         ))}
@@ -203,7 +206,7 @@ export function Suporte() {
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Filtrar por categoria</h2>
         <div className="flex flex-wrap gap-2">
-          {["Driver", "Utility", "Rede", "USB/SERIAL/COM"].map((category) => (
+          {["Driver", "Utility", "Rede"].map((category) => (
             <Button
               key={category}
               variant={
