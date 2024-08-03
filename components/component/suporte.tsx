@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { DownloadIcon } from "@radix-ui/react-icons"
-import Link from "next/link"
 
 export function Suporte() {
   const links = [
@@ -58,32 +57,82 @@ export function Suporte() {
     },
     {
       id: 6,
-      title: "Notion",
-      description: "The all-in-one workspace for your notes, tasks, wikis, and databases.",
-      thumbnail: "/placeholder.svg",
-      category: "Productivity",
-      url: "https://notion.so",
+      title: "Utility Bematech",
+      description: "Configurador de rede para impressoras modelos Bematech modelos 2500 - 4000 - 4200TH - 100s - 5100 64bits ",
+      thumbnail: "/bematechrede.png",
+      category: "Utility",
+      url: "/drive_impressora/BEMATECH/ENCONTRAR IP/Bematech User Software v2.8.3 for 64 bits.exe",
       popularity: 4.7,
     },
     {
       id: 7,
-      title: "Behance",
+      title: "Utility Elgin i9 e i7",
       description:
-        "Showcase and discover the latest work from top online portfolios by creative professionals across industries.",
-      thumbnail: "/placeholder.svg",
-      category: "Design",
-      url: "https://behance.net",
+        "Configurador de rede para impressoras da marca Elgin modelo i9 e i7",
+      thumbnail: "/elginrede.png",
+      category: "Utility",
+      url: "/drive_impressora/ELGIN/i7 i9/ELGINUtilitySetup_V1.2.2.24/ELGINUtilitySetup V1.2.2.24.exe",
       popularity: 4.8,
     },
     {
       id: 8,
-      title: "GitHub",
+      title: "Utility Epson",
       description:
-        "Where the world builds software. Millions of developers and companies build, ship, and maintain their software on GitHub.",
-      thumbnail: "/placeholder.svg",
-      category: "Technology",
-      url: "https://github.com",
+        "Configurador de rede para impressoras da marca EPSON TM 20, TM 20x e TM 88",
+      thumbnail: "/epsonrede.png",
+      category: "Utility",
+      url: "/drive_impressora/EPSON/MAGAIVER EPSON CONFIGURADOR DHCP.exe",
       popularity: 4.9,
+    },
+    {
+      id: 9,
+      title: "Control ID",
+      description:
+        "Drive & utility para instalação e configuração de rede para impressora Control ID",
+      thumbnail: "/controlid.png",
+      category: "Driver & Utility",
+      url: "/drive_impressora/PRINTER ID/PRINTER ID.zip",
+      popularity: 4.5,
+    },
+    {
+      id: 10,
+      title: "Tanca TP 450",
+      description:
+        "Drive de configuração para impressora TP-450",
+      thumbnail: "/logotanca.png",
+      category: "Drive",
+      url: "/drive_impressora/TANCA/TP-450.exe",
+      popularity: 4.0,
+    },
+    {
+      id: 11,
+      title: "Tanca TP 550",
+      description:
+        "Drive de configuração para impressora TP-550",
+      thumbnail: "/logotanca550.png",
+      category: "Drive",
+      url: "/drive_impressora/TANCA/TP-550.exe",
+      popularity: 4.0,
+    },
+    {
+      id: 12,
+      title: "Tanca TP 650",
+      description:
+        "Drive de configuração para impressora TP-650",
+      thumbnail: "/logotanca650.png",
+      category: "Drive",
+      url: "/drive_impressora/TANCA/TP-650.exe",
+      popularity: 4.0,
+    },
+    {
+      id: 13,
+      title: "Utility Tanca",
+      description:
+        "Utility de configuração de rede para impressora TP-650, TP-550, TP-450",
+      thumbnail: "/logotanca650.png",
+      category: "Drive",
+      url: "/drive_impressora/TANCA/Driver_Utilitarios_TP-650.zip",
+      popularity: 3.0,
     },
   ]
   const [searchTerm, setSearchTerm] = useState("")
@@ -183,6 +232,10 @@ export function Suporte() {
                 {link.description}
               </p>
 
+              <div className="gap-36">
+
+              </div>
+
               <div className="flex items-center justify-between">
                 <Badge variant="primary" className="hover:bg-blue-500 hover:text-white">
                   {link.category}
@@ -206,7 +259,7 @@ export function Suporte() {
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Filtrar por categoria</h2>
         <div className="flex flex-wrap gap-2">
-          {["Driver", "Utility", "Rede"].map((category) => (
+          {["Driver", "Utility", "Rede", "Driver & Utility"].map((category) => (
             <Button
               key={category}
               variant={
