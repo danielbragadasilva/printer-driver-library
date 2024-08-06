@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Suporte } from "@/components/component/suporte";
+import { Suporte } from "@/components/suporte";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Link Suporte",
-  description: "Utilitarios do suporte da yooga",
+  title: "Pandora",
+  description: "Utilitarios do suporte",
 };
 
 export default function RootLayout({
@@ -16,9 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <html lang="pt">
       <body className={inter.className}>
-        <Suporte />
+          <Suporte />
         </body>
     </html>
   );

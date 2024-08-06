@@ -6,7 +6,18 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRad
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { DownloadIcon } from "@radix-ui/react-icons"
+import { DownloadIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export function Suporte() {
   const links = [
@@ -18,6 +29,7 @@ export function Suporte() {
       category: "Driver",
       url: "/drive_impressora/BEMATECH/64 BITS - 2500-4000-4200-100s-5100 Drivers.exe",
       popularity: 5.0,
+      obs: "Impressora teste"
     },
     {
       id: 2,
@@ -134,6 +146,97 @@ export function Suporte() {
       url: "/drive_impressora/TANCA/Driver_Utilitarios_TP-650.zip",
       popularity: 3.0,
     },
+    {
+      id: 14,
+      title: "Daruma DR800",
+      description:
+        "Driver de configuração da impressora daruma modelo DR800",
+      thumbnail: "/daruma.png",
+      category: "Drive",
+      url: "/drive_impressora/DARUMA/DARUMA DR_800/Driver_DR800.zip",
+      popularity: 3.0,
+    },
+    {
+      id: 15,
+      title: "Daruma DR700",
+      description:
+        "Driver de configuração da impressora daruma modelo DR700",
+      thumbnail: "/daruma.png",
+      category: "Drive",
+      url: "/drive_impressora/DARUMA/Daruma DR700/Driver_Daruma_S700.zip",
+      popularity: 3.0,
+    },
+    {
+      id: 16,
+      title: "Prolific",
+      description:
+        "Driver de correção para dispositivos com porta Prolifica ",
+      thumbnail: "/placeholder.svg",
+      category: "Drive",
+      url: "/drive_impressora/Prolific.exe",
+      popularity: 3.0,
+    },
+    {
+      id: 17,
+      title: "Hercules",
+      description:
+        "Utilitário para identificação de parâmetros de balança com porta serial e outro dispositivos ",
+      thumbnail: "/placeholder.svg",
+      category: "Utility",
+      url: "/drive_impressora/Prolific.exe",
+      popularity: 3.0,
+    },
+    {
+      id: 18,
+      title: "Sweda Si300",
+      description:
+        "Drive para configuração da impressora Sweda Si300",
+      thumbnail: "/placeholder.svg",
+      category: "Driver",
+      url: "/drive_impressora/SWEDA Si300/509_si_3aal.exe",
+      popularity: 3.0,
+    },
+    {
+      id: 19,
+      title: "Gertec G250",
+      description:
+        "Drive para configuração da impressora Gerte G250 USB",
+      thumbnail: "/placeholder.svg",
+      category: "Driver",
+      url: "/drive_impressora/GERTEC/G250-G250W-main.zip",
+      popularity: 3.0,
+    },
+    {
+      id: 20,
+      title: "Gertec Utility",
+      description:
+        "Utility para configuração da impressora Gerte G250 em rede",
+      thumbnail: "/placeholder.svg",
+      category: "Utility",
+      url: "/drive_impressora/GERTEC/Utility_G250_G250W.zip",
+      popularity: 3.0,
+    },
+    {
+      id: 21,
+      title: "Diebold",
+      description:
+        "Driver para configuração da impressora Diebold modelo IM433T USB ou COM",
+      thumbnail: "/placeholder.svg",
+      category: "Driver",
+      url: "/drive_impressora/DIEBOLD IM433T/IM433T DRIVERS DIEBOLD.exe",
+      popularity: 3.0,
+    },
+    {
+      id: 22,
+      title: "Sem Marca - POS58",
+      description:
+        "Driver para configuração da generica ou POS USB ou COM",
+      thumbnail: "/placeholder.svg",
+      category: "Driver",
+      url: "/drive_impressora/POS/DRIVER POS.zip",
+      popularity: 4.5,
+    },
+
   ]
   const [searchTerm, setSearchTerm] = useState("")
   const [sortBy, setSortBy] = useState("popularity")
@@ -156,7 +259,7 @@ export function Suporte() {
         }
         return true
       })
-      .sort((a, b) => {
+      .sort((a, b, c) => {
         if (sortBy === "popularity") {
           return b.popularity - a.popularity
         } else {
@@ -217,6 +320,26 @@ export function Suporte() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredLinks.map((link) => (
           <Card key={link.id}>
+            <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="outline">
+          
+          <ExclamationTriangleIcon/>
+          </Button>
+
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{link.title}</AlertDialogTitle>
+          <AlertDialogDescription>
+            {link.obs}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction>Entendi</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
             <img
               src={link.thumbnail}
               alt={link.title}
@@ -224,6 +347,7 @@ export function Suporte() {
               height={225}
               className="w-full h-40 object-cover rounded-t-lg"
             />
+            
             <CardContent className="p-4">
               <h3 className="text-lg font-semibold mb-2">
                 {link.title}
@@ -241,7 +365,7 @@ export function Suporte() {
                   {link.category}
                 </Badge>
                 <Button
-                  className="bg-blue-900 text-white"
+                  className="bg-emerald-600 text-white"
                   size="sm"
                   variant="ghost"
                   onClick={() => handleDownload(link.url)}
@@ -259,7 +383,7 @@ export function Suporte() {
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Filtrar por categoria</h2>
         <div className="flex flex-wrap gap-2">
-          {["Driver", "Utility", "Rede", "Driver & Utility"].map((category) => (
+          {["Driver", "Utility", "Driver & Utility"].map((category) => (
             <Button
               key={category}
               variant={
@@ -273,6 +397,10 @@ export function Suporte() {
           ))}
         </div>
       </div>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <p className="text-xs text-muted-foreground justify-center gap-10">&copy; 2024 Acme Support. All rights reserved.</p>
+
+      </footer>
     </div>
   );
 }
