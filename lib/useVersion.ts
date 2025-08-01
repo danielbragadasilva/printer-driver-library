@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export const useVersion = () => {
-  const [version, setVersion] = useState<string>('0.1.8');
+  const [version, setVersion] = useState<string>('0.1.9');
 
   useEffect(() => {
-    // Em produção, a versão será injetada durante o build
-    // Por enquanto, usamos a versão do package.json como fallback
-    const packageVersion = process.env.NEXT_PUBLIC_APP_VERSION || '0.1.8';
+    // Usa a versão injetada pelo Next.js durante o build
+    const packageVersion = process.env.NEXT_PUBLIC_APP_VERSION || '0.1.9';
     setVersion(packageVersion);
   }, []);
 
@@ -16,7 +15,7 @@ export const useVersion = () => {
 // Função utilitária para obter informações de build
 export const getBuildInfo = () => {
   return {
-    version: '0.1.8',
+    version: process.env.NEXT_PUBLIC_APP_VERSION || '0.1.9',
     buildDate: new Date().toLocaleDateString('pt-BR'),
     environment: process.env.NODE_ENV || 'development'
   };
