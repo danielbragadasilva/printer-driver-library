@@ -10,7 +10,6 @@ import { DownloadIcon, ExclamationTriangleIcon, PlayIcon } from "@radix-ui/react
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -319,7 +318,12 @@ export function Suporte() {
         {/* Search and Filter Section */}
         <Card className="mb-8 bg-white/80 backdrop-blur-sm border-blue-200 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-blue-900">🔍 Buscar e Filtrar</CardTitle>
+            <CardTitle className="text-blue-900 flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              Buscar e Filtrar
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex flex-col sm:flex-row gap-4">
@@ -353,7 +357,12 @@ export function Suporte() {
             
             {/* Category Filters */}
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-blue-900">🏷️ Filtrar por categoria:</h3>
+              <h3 className="text-sm font-semibold text-blue-900 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z" />
+                </svg>
+                Filtrar por categoria:
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {["Driver", "Utility", "Driver & Utility"].map((category) => (
                   <Button
