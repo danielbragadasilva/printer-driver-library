@@ -26,9 +26,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { useVersion } from "@/lib/useVersion"
+
+interface LinkItem {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail: string;
+  category: string;
+  url: string;
+  popularity: number;
+  obs?: string;
+  urlvideo?: string;
+}
 
 export function Suporte() {
-  const links = [
+  const version = useVersion();
+  const links = useMemo(() => [
     {
       id: 1,
       title: "Bematech MP 4200 TH",
@@ -248,38 +262,33 @@ export function Suporte() {
       popularity: 4.5,
     },
 
-  ]
-  const [searchTerm, setSearchTerm] = useState("")
-  const [sortBy, setSortBy] = useState("popularity")
-  const [selectedCategories, setSelectedCategories] = useState([])
+  ], [])
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [sortBy, setSortBy] = useState<string>("popularity")
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   
   const filteredLinks = useMemo(() => {
     return links
       .filter((link) => {
-        if (searchTerm.trim() !== "") {
-          return (
-            link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            link.description.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-        }
-        return true
+        const matchesSearch = link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            link.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            link.category.toLowerCase().includes(searchTerm.toLowerCase())
+        
+        return matchesSearch
       })
       .filter((link) => {
-        if (selectedCategories.length > 0) {
-          return selectedCategories.includes(link.category)
-        }
-        return true
+        if (selectedCategories.length === 0) return true
+        return selectedCategories.includes(link.category)
       })
-      .sort((a, b, c) => {
-        if (sortBy === "popularity") {
+      .sort((a, b) => {
+        if (sortBy === 'popularity') {
           return b.popularity - a.popularity
-        } else {
-          return 0
         }
+        return a.title.localeCompare(b.title)
       })
-  }, [searchTerm, sortBy, selectedCategories])
+  }, [searchTerm, sortBy, selectedCategories, links])
 
-  const handleDownload = (url) => {
+  const handleDownload = (url: string) => {
     const link = document.createElement('a')
     link.href = url
     link.setAttribute('download', '')
@@ -288,7 +297,7 @@ export function Suporte() {
     document.body.removeChild(link)
   }
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category: string) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category))
     } else {
@@ -318,7 +327,7 @@ export function Suporte() {
                 <Input
                   placeholder="Buscar por nome ou descrição..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                   className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
@@ -469,10 +478,11 @@ export function Suporte() {
         {/* Footer */}
         <Card className="mt-12 bg-white/60 backdrop-blur-sm border-blue-200">
           <CardContent className="py-6">
-            <div className="text-center">
+            <div className="text-center space-y-2">
               <p className="text-blue-600 text-sm">
-                &copy; 2024 Pandora Support. Todos os direitos reservados.
+                &copy; 2024 Yooga Sistemas. Todos os direitos reservados.
               </p>
+              <p className="text-blue-500 text-sm">Versão {version}</p>
             </div>
           </CardContent>
         </Card>
@@ -481,7 +491,7 @@ export function Suporte() {
   );
 }
 
-function ListOrderedIcon(props) {
+function ListOrderedIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -506,7 +516,7 @@ function ListOrderedIcon(props) {
 }
 
 
-function ShareIcon(props) {
+function ShareIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -528,7 +538,7 @@ function ShareIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

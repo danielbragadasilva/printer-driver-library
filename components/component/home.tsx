@@ -150,7 +150,7 @@ export function Home() {
   )
 }
 
-function GaugeIcon(props) {
+function GaugeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -171,7 +171,7 @@ function GaugeIcon(props) {
 }
 
 
-function HeadphonesIcon(props) {
+function HeadphonesIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -191,7 +191,7 @@ function HeadphonesIcon(props) {
 }
 
 
-function MountainIcon(props) {
+function MountainIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -211,7 +211,7 @@ function MountainIcon(props) {
 }
 
 
-function ShieldIcon(props) {
+function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
