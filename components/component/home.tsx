@@ -7,23 +7,23 @@ import { Suporte } from "@/components/suporte";
 
 export function Home() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
+    <div className="flex flex-col min-h-[100dvh] bg-blue-gradient">
+      <header className="px-4 lg:px-6 h-14 flex items-center bg-white/80 backdrop-blur-sm border-b border-blue-200">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
-          <MountainIcon className="h-6 w-6" />
+          <MountainIcon className="h-6 w-6 text-blue-600" />
           <span className="sr-only">Acme Support</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4 text-blue-700 hover:text-blue-900" prefetch={false}>
             Features
           </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4 text-blue-700 hover:text-blue-900" prefetch={false}>
             Pricing
           </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4 text-blue-700 hover:text-blue-900" prefetch={false}>
             About
           </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4 text-blue-700 hover:text-blue-900" prefetch={false}>
             Contact
           </Link>
         </nav>
@@ -34,10 +34,10 @@ export function Home() {
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_550px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-blue-900">
                     Reliable Support for Your Business
                   </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                  <p className="max-w-[600px] text-blue-700 md:text-xl">
                     Get the support you need to keep your business running smoothly. Our team of experts is here to help
                     you with any issues you may encounter.
                   </p>
@@ -45,7 +45,7 @@ export function Home() {
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link
                     href="#"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-button-gradient hover:bg-button-gradient-hover px-8 text-sm font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50"
                     prefetch={false}
                   >
                     Get Support
@@ -62,42 +62,42 @@ export function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-white/60 backdrop-blur-sm">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Key Features</h2>
-                <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-blue-900">Key Features</h2>
+                <p className="max-w-[600px] text-blue-700 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Our support service offers a range of features to help you get the assistance you need.
                 </p>
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="grid gap-1">
+              <div className="grid gap-1 bg-card-gradient p-6 rounded-lg shadow-md">
                 <div className="flex items-center gap-2">
-                  <HeadphonesIcon className="h-6 w-6 text-primary" />
-                  <h3 className="text-xl font-bold">24/7 Support</h3>
+                  <HeadphonesIcon className="h-6 w-6 text-blue-600" />
+                  <h3 className="text-xl font-bold text-blue-900">24/7 Support</h3>
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-blue-700">
                   Our team is available around the clock to assist you with any issues you may have.
                 </p>
               </div>
-              <div className="grid gap-1">
+              <div className="grid gap-1 bg-card-gradient p-6 rounded-lg shadow-md">
                 <div className="flex items-center gap-2">
-                  <GaugeIcon className="h-6 w-6 text-primary" />
-                  <h3 className="text-xl font-bold">Fast Response Times</h3>
+                  <GaugeIcon className="h-6 w-6 text-blue-600" />
+                  <h3 className="text-xl font-bold text-blue-900">Fast Response Times</h3>
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-blue-700">
                   We pride ourselves on our quick response times, ensuring you get the help you need as soon as
                   possible.
                 </p>
               </div>
-              <div className="grid gap-1">
+              <div className="grid gap-1 bg-card-gradient p-6 rounded-lg shadow-md">
                 <div className="flex items-center gap-2">
-                  <ShieldIcon className="h-6 w-6 text-primary" />
-                  <h3 className="text-xl font-bold">Secure Support</h3>
+                  <ShieldIcon className="h-6 w-6 text-blue-600" />
+                  <h3 className="text-xl font-bold text-blue-900">Secure Support</h3>
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-blue-700">
                   Your data and information are safe with us. We use industry-leading security measures to protect your
                   business.
                 </p>
@@ -109,25 +109,25 @@ export function Home() {
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-md space-y-6">
               <div className="space-y-2 text-center">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Submit a Support Request</h2>
-                <p className="text-muted-foreground md:text-xl/relaxed">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-blue-900">Submit a Support Request</h2>
+                <p className="text-blue-700 md:text-xl/relaxed">
                   Fill out the form below to get in touch with our support team.
                 </p>
               </div>
-              <form className="grid gap-4">
+              <form className="grid gap-4 bg-card-gradient p-6 rounded-lg shadow-lg">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Enter your name" />
+                  <Label htmlFor="name" className="text-blue-900">Name</Label>
+                  <Input id="name" placeholder="Enter your name" className="border-blue-300 focus:border-blue-500" />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="Enter your email" />
+                  <Label htmlFor="email" className="text-blue-900">Email</Label>
+                  <Input id="email" type="email" placeholder="Enter your email" className="border-blue-300 focus:border-blue-500" />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea id="description" placeholder="Briefly describe your issue" />
+                  <Label htmlFor="description" className="text-blue-900">Description</Label>
+                  <Textarea id="description" placeholder="Briefly describe your issue" className="border-blue-300 focus:border-blue-500" />
                 </div>
-                <Button type="submit" className="justify-center">
+                <Button type="submit" className="justify-center bg-button-gradient hover:bg-button-gradient-hover text-white shadow-md hover:shadow-lg transition-all duration-200">
                   Submit Request
                 </Button>
               </form>
@@ -135,13 +135,13 @@ export function Home() {
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">&copy; 2024 Acme Support. All rights reserved.</p>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-blue-200 bg-white/80 backdrop-blur-sm">
+        <p className="text-xs text-blue-600">&copy; 2024 Acme Support. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-xs hover:underline underline-offset-4 text-blue-600 hover:text-blue-800" prefetch={false}>
             Terms of Service
           </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-xs hover:underline underline-offset-4 text-blue-600 hover:text-blue-800" prefetch={false}>
             Privacy
           </Link>
         </nav>

@@ -4,9 +4,9 @@ import { useState, useMemo } from "react"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { DownloadIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons"
+import { DownloadIcon, ExclamationTriangleIcon, PlayIcon } from "@radix-ui/react-icons"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,6 +18,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export function Suporte() {
   const links = [
@@ -29,7 +37,8 @@ export function Suporte() {
       category: "Driver",
       url: "/drive_impressora/BEMATECH/64 BITS - 2500-4000-4200-100s-5100 Drivers.exe",
       popularity: 5.0,
-      obs: "Impressora teste"
+      obs: "Impressora teste",
+      urlvideo: "https://www.youtube.com/embed/dQw4w9WgXcQ"
     },
     {
       id: 2,
@@ -39,6 +48,7 @@ export function Suporte() {
       category: "Driver",
       url: "/drive_impressora/EPSON/TM-T20X/TM-T20X.exe",
       popularity: 4.9,
+      urlvideo: "https://www.youtube.com/embed/ScMzIvxBSi4"
     },
     {
       id: 3,
@@ -57,6 +67,7 @@ export function Suporte() {
       category: "Driver",
       url: "/drive_impressora/ELGIN/i7 i9/ELGIN i7 i9.exe",
       popularity: 4.9,
+      urlvideo: "https://www.youtube.com/embed/jNQXAC9IVRw"
     },
     {
       id: 5,
@@ -286,121 +297,186 @@ export function Suporte() {
   }
 
   return (
-    <div className="p-4 md:p-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Utilitários para suporte</h1>
-        <div className="flex items-center gap-4">
-          <Input
-            placeholder="Pesquise aqui..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full max-w-xs"
-          />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                <ListOrderedIcon className="w-4 h-4 mr-2" />
-                Ordenar por:{" "}
-                {sortBy === "popularity" ? "Popularidade" : "Relevância"}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuRadioGroup value={sortBy} onValueChange={setSortBy}>
-                <DropdownMenuRadioItem value="popularity">
-                  Popularidade
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="relevance">
-                  Relevância
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+    <div className="min-h-screen bg-blue-gradient">
+      <div className="container mx-auto px-4 py-8">
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-blue-900 mb-3">Utilitários para Suporte de Sistema</h1>
+          <p className="text-blue-700 text-lg leading-relaxed max-w-2xl mx-auto">
+            Baixe drivers e utilitários para impressoras e equipamentos de forma rápida e segura
+          </p>
         </div>
-      </div>
+
+        {/* Search and Filter Section */}
+        <Card className="mb-8 bg-white/80 backdrop-blur-sm border-blue-200 shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-blue-900">🔍 Buscar e Filtrar</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
+                <Input
+                  placeholder="Buscar por nome ou descrição..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="border-blue-300 focus:border-blue-500 focus:ring-blue-500"
+                />
+              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50">
+                    <ListOrderedIcon className="w-4 h-4 mr-2" />
+                    Ordenar por: {sortBy === "popularity" ? "Popularidade" : "Relevância"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="rounded-lg">
+                  <DropdownMenuRadioGroup value={sortBy} onValueChange={setSortBy}>
+                    <DropdownMenuRadioItem value="popularity">
+                      Popularidade
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="relevance">
+                      Relevância
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            
+            {/* Category Filters */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-semibold text-blue-900">🏷️ Filtrar por categoria:</h3>
+              <div className="flex flex-wrap gap-2">
+                {["Driver", "Utility", "Driver & Utility"].map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategories.includes(category) ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => handleCategoryChange(category)}
+                    className={selectedCategories.includes(category) 
+                      ? "bg-button-gradient hover:bg-button-gradient-hover text-white shadow-md rounded-full" 
+                      : "border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 rounded-full transition-all duration-300"
+                    }
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredLinks.map((link) => (
-          <Card key={link.id}>
-            <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="outline">
-          
-          <ExclamationTriangleIcon/>
-          </Button>
-
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{link.title}</AlertDialogTitle>
-          <AlertDialogDescription>
-            {link.obs}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogAction>Entendi</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-            <img
-              src={link.thumbnail}
-              alt={link.title}
-              width={400}
-              height={225}
-              className="w-full h-40 object-cover rounded-t-lg"
-            />
+          <Card key={link.id} className="overflow-hidden bg-card-gradient border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group">
+            <div className="relative overflow-hidden">
+              <img
+                src={link.thumbnail}
+                alt={link.title}
+                width={400}
+                height={225}
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {link.obs && (
+                <div className="absolute top-3 right-3">
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button 
+                        variant="secondary" 
+                        size="sm"
+                        className="bg-amber-100/90 text-amber-700 hover:bg-amber-200/90 border-amber-300 backdrop-blur-sm shadow-md"
+                      >
+                        <ExclamationTriangleIcon className="w-4 h-4" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="rounded-xl">
+                      <AlertDialogHeader>
+                        <AlertDialogTitle className="text-blue-900">{link.title}</AlertDialogTitle>
+                        <AlertDialogDescription className="text-blue-700">
+                          {link.obs}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogAction className="bg-button-gradient hover:bg-button-gradient-hover">Entendi</AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+              )}
+            </div>
             
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-2">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg font-bold text-blue-900 leading-tight">
                 {link.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
+              </CardTitle>
+              <CardDescription className="text-blue-600 leading-relaxed">
                 {link.description}
-              </p>
-
-              <div className="gap-36">
-
-              </div>
-
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent className="pt-0 pb-4">
               <div className="flex items-center justify-between">
-                <Badge variant="primary" className="hover:bg-blue-500 hover:text-white">
+                <Badge variant="secondary" className="bg-blue-100 text-blue-800 hover:bg-blue-200 border-blue-300 px-3 py-1 rounded-full font-medium">
                   {link.category}
                 </Badge>
+              </div>
+            </CardContent>
+            
+            <CardFooter className="pt-0">
+              <div className="flex gap-2 w-full">
                 <Button
-                  className="bg-emerald-600 text-white"
-                  size="sm"
-                  variant="ghost"
+                  className="flex-1 bg-button-gradient hover:bg-button-gradient-hover text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg font-semibold"
                   onClick={() => handleDownload(link.url)}
                 >
-                  <DownloadIcon className="w-4 h-4" />
+                  <DownloadIcon className="w-5 h-5 mr-2" />
                   Download
                 </Button>
+                {link.urlvideo && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg"
+                      >
+                        <PlayIcon className="w-5 h-5" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl w-full">
+                      <DialogHeader>
+                        <DialogTitle className="text-blue-900">Tutorial - {link.title}</DialogTitle>
+                        <DialogDescription className="text-blue-700">
+                          Assista ao tutorial de instalação e configuração
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="aspect-video w-full">
+                        <iframe
+                          src={link.urlvideo}
+                          title={`Tutorial ${link.title}`}
+                          className="w-full h-full rounded-lg"
+                          allowFullScreen
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
               </div>
-
-
-            </CardContent>
+            </CardFooter>
           </Card>
         ))}
-      </div>
-      <div className="mt-8">
-        <h2 className="text-xl font-bold mb-4">Filtrar por categoria</h2>
-        <div className="flex flex-wrap gap-2">
-          {["Driver", "Utility", "Driver & Utility"].map((category) => (
-            <Button
-              key={category}
-              variant={
-                selectedCategories.includes(category) ? "primary" : "outline"
-              }
-              onClick={() => handleCategoryChange(category)}
-              className="px-4 py-2 text-sm"
-            >
-              {category}
-            </Button>
-          ))}
         </div>
+        
+        {/* Footer */}
+        <Card className="mt-12 bg-white/60 backdrop-blur-sm border-blue-200">
+          <CardContent className="py-6">
+            <div className="text-center">
+              <p className="text-blue-600 text-sm">
+                &copy; 2024 Pandora Support. Todos os direitos reservados.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground justify-center gap-10">&copy; 2024 Acme Support. All rights reserved.</p>
-
-      </footer>
     </div>
   );
 }
